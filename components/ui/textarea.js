@@ -1,8 +1,9 @@
 import React from 'react'
-export function Textarea({ className, ...props }) {
+
+export function Button({ className = '', ...props }) {
   return (
-    <textarea
-      className={\`w-full p-2 bg-neutral-800 border border-neutral-700 rounded-md text-white shadow-sm resize-y \${className || ""}\`}
+    <button
+      className={"bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-md " + className}
       {...props}
     />
   )
