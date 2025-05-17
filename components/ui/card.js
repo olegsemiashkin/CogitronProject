@@ -1,4 +1,4 @@
-
+import React from 'react'
 export function Card({ children, className }) {
   return (
     <div className={\`bg-neutral-800 shadow-md rounded-xl border border-neutral-700 \${className || ""}\`}>
