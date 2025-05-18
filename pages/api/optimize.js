@@ -1,8 +1,14 @@
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') return res.status(405).end()
+  if (req.method !== 'POST') {
+    return res.status(405).json({ result: 'Method not allowed' })
+  }
 
   const { blueprint } = req.body
+
+  if (!blueprint || typeof blueprint !== 'string') {
+    return res.status(400).json({ result: 'Invalid blueprint input' })
+  }
 
   const prompt = `Here is a Factorio blueprint string:\n\n${blueprint}\n\nAnalyze this blueprint and provide:\n- Design and layout issues\n- Suggestions for logistics, balancing, and modularity\n- An improved blueprint string if possible`
 
@@ -23,12 +29,17 @@ export default async function handler(req, res) {
       })
     })
 
+    if (!response.ok) {
+      const errText = await response.text()
+      return res.status(500).json({ result: `OpenAI API error: ${errText}` })
+    }
+
     const json = await response.json()
     const reply = json.choices?.[0]?.message?.content
 
     res.status(200).json({ result: reply || 'No response from model.' })
   } catch (err) {
-    console.error(err)
-    res.status(500).json({ result: 'Error calling GPT API.' })
+    console.error('API error:', err)
+    res.status(500).json({ result: 'Server error. Please try again later.' })
   }
 }
