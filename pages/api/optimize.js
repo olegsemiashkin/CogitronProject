@@ -1,4 +1,3 @@
-
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ result: 'Method not allowed' });
@@ -10,15 +9,14 @@ export default async function handler(req, res) {
     return res.status(400).json({ result: 'Invalid blueprint input' });
   }
 
-  const prompt = `Here is a Factorio blueprint string:\n\n${blueprint}\n\nAnalyze this blueprint and provide:\n- Design and layout issues\n- Suggestions for logistics, balancing, and modularity\n- An improved blueprint string if possible`;
+  const prompt = `Here is a Factorio blueprint string:\\n\\n${blueprint}\\n\\nAnalyze this blueprint and provide:\\n- Design and layout issues\\n- Suggestions for logistics, balancing, and modularity\\n- An improved blueprint string if possible`;
 
   try {
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-       'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
-
+        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
       },
       body: JSON.stringify({
         model: 'openchat/openchat-7b', // Бесплатная модель
