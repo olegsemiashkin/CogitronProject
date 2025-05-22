@@ -10,40 +10,40 @@ export default function Home() {
     e.preventDefault();
     if (!blueprint) return;
 
-    // 3 набора: текст + фото + подпись
+    // 3 набора: советы + рабочее изображение + подпись
     const tips = [
       {
         advice: [
-          "This section of your base focuses on automated science pack production.",
-          "Ensure every assembler is properly supplied with resources, and balance belt throughput.",
-          "Blueprint could benefit from more space between labs and production blocks.",
-          "Keep bus lines tidy and use underground belts to avoid congestion.",
-          "Consider buffer chests for steady output."
+          "Your blue science production line looks functional, but can be improved.",
+          "Make sure each assembler is supplied from both sides to maximize throughput.",
+          "Consider using underground belts to keep lanes clear.",
+          "Add buffer chests for steady pack output.",
+          "Space out labs and leave room for future expansion."
         ],
-        image: "https://i.imgur.com/MLQ0Urt.png", // Blue science
-        caption: "Example: Efficient blue science production line"
+        image: "https://i.imgur.com/qCdnbI3.png",
+        caption: "Example: Neatly organized blue science production line"
       },
       {
         advice: [
-          "Detected multiple display circuits — great for monitoring base stats.",
-          "Consider dedicating separate lines for each signal to avoid cross-talk.",
-          "Label all displays clearly and group combinators for maintainability.",
-          "Use separate power supplies for logic and main factory to avoid interruptions.",
-          "Compact designs improve space usage but can reduce readability — keep a balance."
+          "Complex circuit displays are great for monitoring your factory.",
+          "Keep separate lines for each signal to avoid interference.",
+          "Label each segment clearly for easier maintenance.",
+          "Use compact layouts but avoid over-clustering combinators.",
+          "Isolate display logic from main power grid if possible."
         ],
-        image: "https://i.imgur.com/yAkD0dC.png", // Segment display
-        caption: "Example: Clean segment displays and circuit combinators"
+        image: "https://i.imgur.com/9d3MyGI.jpeg",
+        caption: "Example: Clear, readable segment displays with combinators"
       },
       {
         advice: [
-          "Train unloaders need enough inserters to keep throughput high.",
-          "Group inserters and chests efficiently for even unloading.",
-          "Make sure to signal train stops for smooth logistics.",
-          "Use stack inserters and filtered chests for best performance.",
-          "Keep belts short from unloaders to main bus."
+          "Your train unloader could be optimized for speed.",
+          "Use stack inserters and chests in groups for even unloading.",
+          "Signal train stops to avoid traffic jams.",
+          "Keep belt paths short and direct.",
+          "Plan for future upgrades by leaving extra space around unloading areas."
         ],
-        image: "https://i.imgur.com/FQDc6rS.png", // Train unloader
-        caption: "Example: 1x4 train unloader — optimized for flow"
+        image: "https://i.imgur.com/jI9gvpK.png",
+        caption: "Example: Efficient 1x4 train unloader design"
       }
     ];
 
