@@ -3,44 +3,59 @@ import React, { useState } from "react";
 export default function Home() {
   const [blueprint, setBlueprint] = useState("");
   const [result, setResult] = useState("");
+  const [image, setImage] = useState("");
+  const [caption, setCaption] = useState("");
 
   function handleOptimize(e) {
     e.preventDefault();
     if (!blueprint) return;
 
-    // Массив вариантов "глубокого" анализа
+    // 3 набора: текст + фото + подпись
     const tips = [
-      [
-        "Your main bus is too long. Try splitting it into sections for better throughput.",
-        "Consider adding buffer chests near main intersections.",
-        "Use underground belts at crossings to reduce clutter.",
-        "Modularize production blocks for easier scaling.",
-        "Separate iron and copper flows to avoid mixing resources.",
-        "Add 4-to-4 balancers for consistent resource flow."
-      ],
-      [
-        "The factory layout is dense, which may cause logistics jams. Try spreading out production units.",
-        "No buffer chests found; adding them will help with high-throughput lines.",
-        "Label inputs/outputs for easier debugging.",
-        "Split the main bus by product type for clarity.",
-        "Power poles are too close together; reduce overlap for a cleaner look.",
-        "Upgrade assembler machines to keep up with demand."
-      ],
-      [
-        "Detected overlapping belts that may cause jams.",
-        "No separate bus lines for iron and copper plates.",
-        "Consider adding buffer chests and more underground belts.",
-        "Reduce spaghetti in logistics for better throughput.",
-        "Use beacons for high-volume production lines.",
-        "Expand the base in modular blocks for future scalability."
-      ]
+      {
+        advice: [
+          "This section of your base focuses on automated science pack production.",
+          "Ensure every assembler is properly supplied with resources, and balance belt throughput.",
+          "Blueprint could benefit from more space between labs and production blocks.",
+          "Keep bus lines tidy and use underground belts to avoid congestion.",
+          "Consider buffer chests for steady output."
+        ],
+        image: "https://i.imgur.com/MLQ0Urt.png", // Blue science
+        caption: "Example: Efficient blue science production line"
+      },
+      {
+        advice: [
+          "Detected multiple display circuits — great for monitoring base stats.",
+          "Consider dedicating separate lines for each signal to avoid cross-talk.",
+          "Label all displays clearly and group combinators for maintainability.",
+          "Use separate power supplies for logic and main factory to avoid interruptions.",
+          "Compact designs improve space usage but can reduce readability — keep a balance."
+        ],
+        image: "https://i.imgur.com/yAkD0dC.png", // Segment display
+        caption: "Example: Clean segment displays and circuit combinators"
+      },
+      {
+        advice: [
+          "Train unloaders need enough inserters to keep throughput high.",
+          "Group inserters and chests efficiently for even unloading.",
+          "Make sure to signal train stops for smooth logistics.",
+          "Use stack inserters and filtered chests for best performance.",
+          "Keep belts short from unloaders to main bus."
+        ],
+        image: "https://i.imgur.com/FQDc6rS.png", // Train unloader
+        caption: "Example: 1x4 train unloader — optimized for flow"
+      }
     ];
-    const randomTipBlock = tips[Math.floor(Math.random() * tips.length)];
-    const advice = randomTipBlock.join("\n");
+
+    // Рандомно выбираем набор
+    const block = tips[Math.floor(Math.random() * tips.length)];
+    const advice = block.advice.join("\n");
     const improvedBlueprint = blueprint.slice(0, 80) + "...";
     setResult(
       `✅ Analysis complete:\n\n${advice}\n\n(demo improved blueprint): ${improvedBlueprint}`
     );
+    setImage(block.image);
+    setCaption(block.caption);
   }
 
   return (
@@ -69,22 +84,24 @@ export default function Home() {
         {result && (
           <div className="resultbox">
             <div style={{ marginBottom: 14, whiteSpace: "pre-line" }}>{result}</div>
-            <div style={{ textAlign: "center" }}>
-              <img
-                src="https://i.imgur.com/HEdZl1q.png"
-                alt="Example optimized base"
-                style={{
-                  width: "100%",
-                  maxWidth: 340,
-                  borderRadius: 12,
-                  boxShadow: "0 2px 14px 0 rgba(60,80,200,0.13)",
-                  margin: "0 auto"
-                }}
-              />
-              <div style={{ color: "#64748b", fontSize: 14, marginTop: 5 }}>
-                Example of a clean, modular Factorio base layout
+            {image && (
+              <div style={{ textAlign: "center" }}>
+                <img
+                  src={image}
+                  alt="Example optimized base"
+                  style={{
+                    width: "100%",
+                    maxWidth: 340,
+                    borderRadius: 12,
+                    boxShadow: "0 2px 14px 0 rgba(60,80,200,0.13)",
+                    margin: "0 auto"
+                  }}
+                />
+                <div style={{ color: "#64748b", fontSize: 14, marginTop: 5 }}>
+                  {caption}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         )}
         <div className="demo">
