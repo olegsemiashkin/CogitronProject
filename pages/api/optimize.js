@@ -12,11 +12,11 @@ export default async function handler(req, res) {
   const prompt = `Here is a Factorio blueprint string:\n\n${blueprint}\n\nAnalyze this blueprint and provide:\n- Design and layout issues\n- Suggestions for logistics, balancing, and modularity\n- An improved blueprint string if possible`;
 
   try {
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    const response = await fetch('https://api.openrouter.ai/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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',
+        'Authorization': 'Bearer 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'
       },
       body: JSON.stringify({
         model: 'openchat/openchat-7b',
