@@ -9,17 +9,17 @@ export default async function handler(req, res) {
     return res.status(400).json({ result: 'Invalid blueprint input' });
   }
 
-  const prompt = `Here is a Factorio blueprint string:\\n\\n${blueprint}\\n\\nAnalyze this blueprint and provide:\\n- Design and layout issues\\n- Suggestions for logistics, balancing, and modularity\\n- An improved blueprint string if possible`;
+  const prompt = `Here is a Factorio blueprint string:\n\n${blueprint}\n\nAnalyze this blueprint and provide:\n- Design and layout issues\n- Suggestions for logistics, balancing, and modularity\n- An improved blueprint string if possible`;
 
   try {
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        'Authorization': 'Bearer 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',
       },
       body: JSON.stringify({
-        model: 'openchat/openchat-7b', // Бесплатная модель
+        model: 'openchat/openchat-7b',
         messages: [
           { role: 'system', content: 'You are a Factorio engineer bot. You improve factory layouts.' },
           { role: 'user', content: prompt }
