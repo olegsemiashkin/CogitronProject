@@ -2,6 +2,8 @@
 
 An AI-powered tool to analyze and optimize Factorio base layouts using GPT-4.
 
+🌐 **[Try the live demo → cogitron-project.vercel.app](https://cogitron-project.vercel.app/)**
+
 ---
 
 ## 💡 What It Does
