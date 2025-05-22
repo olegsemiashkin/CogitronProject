@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../styles/modern.css";
 
 export default function Home() {
   const [blueprint, setBlueprint] = useState("");
