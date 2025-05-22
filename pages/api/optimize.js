@@ -38,7 +38,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ result: reply || 'No response from model.' });
   } catch (err) {
-    console.error('API error:', err);
-    res.status(500).json({ result: 'Server error. Please try again later.' });
+    // Временно выдаём всю ошибку наружу для отладки:
+    res.status(500).json({ result: err?.message || err?.toString() || 'Unknown server error', stack: err?.stack });
   }
 }
